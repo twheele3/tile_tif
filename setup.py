@@ -5,7 +5,7 @@ setup(
     url='https://github.com/twheele3/tiletif',
     author='Tim Wheeler',
     author_email='twheele3@uoregon.edu',
-    packages=['tiletif'],
+    # packages=['tiletif'],
     install_requires=['numpy','tifffile'],
     version='0.1',
     license='MIT',

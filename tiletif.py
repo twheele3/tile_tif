@@ -14,6 +14,15 @@ class tile_tif():
         pixel_max (int) : Maximum number of pixels allowed per tile. 
         overlap (float) : Factor by which to extend boundaries that overlap with neighboring tiles.
         scale_quantile (float) : Quantile to set as min/reciprocal max for scaling.
+        
+    Methods:
+        tiles() : generator for tiles
+        offsets() : generator for offsets
+        split() : generator for (tile,offset) pairs
+        get_tile(index) : get tile by index
+        get_offset(index) : get offset by index
+        normalize(arr) : normalize based on quantilized min/max
+        update() : update internal parameters
     """
     def __init__(self, filename, tile_axes = [-2,-1], channel_axis = None, pixel_max = 16e6, overlap = 0., scale_quantile = 0.005):
         ## Initial checks
