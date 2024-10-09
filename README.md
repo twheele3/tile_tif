@@ -3,7 +3,7 @@
 
 ## Overview
 
-tile_tif is a package to aid in the processing of large N-dimensional tif files with the use of memmapped tiles. Generator objects allow for pipeline analysis on smaller scale computers. This package is a single class with methods for 
+tile_tif is a package to aid in the processing of large N-dimensional tif files with the use of memmapped tiles. Generator objects allow for pipeline analysis on smaller scale computers. This package is a single class with methods for getting tiles and offsets, as well as normalization.
 
 ## Instantiation
 
@@ -64,7 +64,7 @@ offset = t.get_offset(index)
 ```
 ## Normalization
 
-tile_tif has an inbuilt method to help with normalizing values. It uses a two-tailed quantile-based approach, where the minimum is set to the qth fractional quantile, and maximum to the 1-qth fractional quantile. If a channel_axis is specified, the mins and maxes are per-channel.
+tile_tif has an inbuilt method to help with normalizing values. It uses a two-tailed quantile-based approach, where the minimum is set to the qth fractional quantile, and maximum to the 1-qth fractional quantile. It uses memmapped splicing to subsample the full array on the assumptions that there is a large enough subsample to be broadly valid. If a channel_axis is specified, the mins and maxes are per-channel. 
 
 ```{python}
 arr = np.array(t.get_tile(index)) # This must be instantiated as an array to have operations performed on it.
