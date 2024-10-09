@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(
-    name='tile_tif',
-    url='https://github.com/twheele3/tile_tif',
+    name='tiletif',
+    url='https://github.com/twheele3/tiletif',
     author='Tim Wheeler',
     author_email='twheele3@uoregon.edu',
-    packages=['tile_tif'],
+    packages=['tiletif'],
     install_requires=['numpy','os','tifffile'],
     version='0.1',
     license='MIT',
