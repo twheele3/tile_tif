@@ -10,5 +10,5 @@ setup(
     version='0.1',
     license='MIT',
     description='A package to tile large N-dimensional tiff files through memmapping for ease of processing.',
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
 )
