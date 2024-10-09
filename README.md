@@ -38,3 +38,45 @@ for i,(tile,offset) in enumerate(t.split()):
     plt.imshow(arr)
     plt.axis('off')
 ```
+
+
+## Generators
+
+Class methods exist to create generators for tiles, offsets, and both at once. As this is meant to apply to very large tif files, you normally wouldn't output to lists.
+
+```{python}
+# Tile generator
+tiles = [i for i in t.tiles()]
+# Offset generator
+offsets = [i for i in t.offsets()]
+# (Tile,Offset) generator
+splits = [(tiles,offsets) for tiles,offsets in t.split()]
+```
+
+## Single tile calls
+
+When you need to get a single tile, you can use the following method:
+
+```{python}
+index = [2,3] # An index of the tile you want to show. This can be either an integer or list-like of same shape as tile_axes.
+tile = t.get_tile(index) # Instantiates a memmap tile
+offset = t.get_offset(index)
+```
+## Normalization
+
+tile_tif has an inbuilt method to help with normalizing values. It uses a two-tailed quantile-based approach, where the minimum is set to the qth fractional quantile, and maximum to the 1-qth fractional quantile. If a channel_axis is specified, the mins and maxes are per-channel.
+
+```{python}
+arr = np.array(t.get_tile(index)) # This must be instantiated as an array to have operations performed on it.
+arr = t.normalize(arr,       # Array is normalized based on values.
+				  trim=True) # Default false. Will set all values to within [0,1] if true.
+```
+
+## Updating parameters
+
+Parameters can be respecified and the object updated without reinstantiating. For instance:
+
+```{python}
+t.scale_quantile = 0.002
+t.update()
+```
